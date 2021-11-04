@@ -13,14 +13,24 @@ import AppText from './AppText';
 import Home from "./Home";
 
 class App extends Component {
+
   constructor() {
     super();
+    this.homeStudent=true;
+    this.status=false;
   }
 
+  onButtonClickedStatus() {
+    this.status=true;
+    console.log(this.status);
+  };
+
   render() {
-    return (
-     <AppText />
-    );
+    if (this.homeStudent === true) {
+      return (
+        <AppText />
+       );
+    }
   }
 
 }
