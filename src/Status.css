@@ -1,5 +1,13 @@
 .center {
-    top: 250;
     text-align: center;
     border: 3px solid white;
+}
+
+.box-center {
+    padding: 200px;
+    border: 200x;
+}
+
+.page-color {
+    
 }

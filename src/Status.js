@@ -1,19 +1,28 @@
 import React, {Component} from 'react';
+import './Status.css'
+import Tooltip from '@mui/material/Tooltip';
+import StatusDesign from './StatusDesign';
 
-class Status extends React.Component {
+
+class Status extends Component {
+
+    constructor() {
+        super();
+    }
 
     state = {
         loading: true,
         person: null,
     };
 
+
     // fetch data from API
     async componentDidMount() {
-        const url = "https://api.randomuser.me/";
+        const url = "http://192.168.100.7:5000/userName/status";
         const response = await fetch(url);
+        console.log(response)
         const data = await response.json();
-        console.log(data);
-        this.setState({person: data.results[0], loading: false});
+        this.setState({person: data, loading: false});
     }
 
     render() {
@@ -22,14 +31,18 @@ class Status extends React.Component {
                {this.state.loading || !this.state.person ? (
                     <div>loading...</div>
                )  : (
-                    <div>
-                        <div>Prenume: {this.state.person.name.first}</div>
-                        <div>Nume: {this.state.person.name.last}</div>
-                        <div>Grupa: {this.state.person.name.title} </div>
-                        <div>Email: {this.state.person.email} </div>
+                    <div className='box-center'>
+                        {/* <div>Prenume: {this.state.person.n}</div>
+                        <div>Nume: {this.state.person.name.last}</div> */}
+                        <div className='center'>Username: {this.state.person.userName}</ div>
+                        <div className='center'>Grupa: {this.state.person.Grupa} </div>
+                        <div className='center'>mail: {this.state.person.mail} </div>
                     </ div>
                )}
             </ div>
+        // <div>
+        //     {this.state.loading || !this.state.person ? ( <div>loading...</div>) : ( <StatusDesign dataPerson={this.state.person}/>)}
+        // </div>
         );
     }
 }

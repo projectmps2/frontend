@@ -1,10 +1,5 @@
-import { render } from "react-dom";
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect
 } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import { Box } from "@material-ui/core";

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Status from './Status';
 import HomeText from './HomeText';
-import SubjectText from './SubjectText';
+import Lecture from './Lecture';
 
 class Home extends Component {
     constructor() {
@@ -23,7 +23,7 @@ class Home extends Component {
         if (this.state.pageSelector === 1) {
             return(<Status />);
         } else if (this.state.pageSelector === 2) {
-            return(<SubjectText />);
+            return(<Lecture />);
         }
         // passing vars to jsx
         return(<HomeText pageSelectorHandle={this.handle.bind(this)}/>);
