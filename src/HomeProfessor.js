@@ -16,7 +16,7 @@ class HomeProfessor extends Component {
     }
 
     render() {
-        if (this.state.menuSelector == 11) {
+        if (this.state.menuSelector === 11) {
             return(< Configuration />);
         }
         return(
