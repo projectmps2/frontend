@@ -21,7 +21,7 @@ import {
         backgroundColor: "#21b6ae",
         color: "white"}}
       justifyContent="center" variant="contained" size="large"
-      onClick={()=>props.pageSelectorHandle(2)}> Setare orar </Button> <br />
+      onClick={()=>props.changePage(12)}> Setare orar </Button> <br />
       <Button style={{
         top: 260,
         backgroundColor: "#21b6ae",

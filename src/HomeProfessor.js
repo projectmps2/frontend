@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import HomeProfessorText from './HomeProfessorText'
 import Configuration from './Configuration';
+import Schedule from './Schedule';
 
 class HomeProfessor extends Component {
 
@@ -18,6 +19,8 @@ class HomeProfessor extends Component {
     render() {
         if (this.state.menuSelector === 11) {
             return(< Configuration />);
+        } else if (this.state.menuSelector === 12) {
+            return(< Schedule />);
         }
         return(
             <>
