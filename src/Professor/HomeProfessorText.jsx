@@ -3,44 +3,41 @@ import {
   } from "react-router-dom";
   import { Button } from "@material-ui/core";
   import { Box } from "@material-ui/core";
+  import './HomeProfessor.css'
 
   const MeniuProfessorText = ( props ) => ( 
     <>
     <Router>
-    <Box textAlign='center'>
+    <Box className='center-menu'>
       <Button
         style={{
-          top: 250, 
           backgroundColor: "#21b6ae", 
           color: "white"}}
-        justifyContent="center" variant="contained" size="large" 
+          variant="contained"
+          size="large" 
         onClick={()=>props.changePage(11)}> Configurare materie 
       </Button> <br />
       <Button style={{
-        top: 255,
         backgroundColor: "#21b6ae",
         color: "white"}}
-      justifyContent="center" variant="contained" size="large"
+        variant="contained" size="large"
       onClick={()=>props.changePage(12)}> Setare orar </Button> <br />
       <Button style={{
-        top: 260,
         backgroundColor: "#21b6ae",
         color: "white"}}
-      justifyContent="center"variant="contained" size="large" color="secondary"
-      onClick={()=>props.pageSelectorHandle(3)}> Generare statistica </Button> <br />
+      variant="contained" size="large" color="secondary"
+      onClick={()=>props.changePage(13)}> Generare statistica </Button> <br />
       <Button style={{
-        top: 265,
         backgroundColor: "#21b6ae",
         color: "white"}}
-      justifyContent="center" variant="contained" size="large" color="secondary"
-      onClick={()=>props.pageSelectorHandle(4)}> Generare cod QR</Button>
+       variant="contained" size="large" color="secondary"
+      onClick={()=>props.changePage(14)}> Generare cod QR</Button>
       <br />
       <Button style={{
-        top: 270,
         backgroundColor: "#21b6ae",
         color: "white"}}
-      justifyContent="center" variant="contained" size="large" color="secondary"
-      onClick={()=>props.pageSelectorHandle(4)}> Export prezenta</Button>
+       variant="contained" size="large" color="secondary"
+      onClick={()=>props.changePage(15)}> Export prezenta</Button>
       </ Box>
     </Router>
     <header>

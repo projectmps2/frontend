@@ -2,6 +2,7 @@ import { Autocomplete } from '@mui/material';
 import React, {Component} from 'react';
 import { TextField } from '@mui/material';
 import { Button } from '@mui/material';
+import "./Schedule.css";
 
 const weekDays = ['Luni', 'Marti', 'Miercuri', 'Joi', 'Vineri'];
 class Schedule extends Component {
@@ -22,7 +23,7 @@ class Schedule extends Component {
 
     render() {
         return(
-            <>
+            <div  className='box-center'>
             <Autocomplete 
             disablePortal
             id="combo-box-demo" 
@@ -42,7 +43,7 @@ class Schedule extends Component {
             <br />
             <br />
             <Button style = {{backgroundColor: '#21b6ae', color: 'white'}} variant='contained' color='primary' type="button" onClick={() => this.postData()}> Incarca modificarile </ Button>
-            </>
+            </ div>
         );
     }
 }

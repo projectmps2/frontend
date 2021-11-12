@@ -1,5 +1,5 @@
-import Home from "./Home";
-import HomeProfessor from './HomeProfessor';
+import Home from "./Student/Home";
+import HomeProfessor from './Professor/HomeProfessor';
 
 
 const AppText = () => ( 
