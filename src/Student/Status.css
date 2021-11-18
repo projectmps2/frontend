@@ -4,6 +4,9 @@
 }
 
 .box-center {
-    padding: 200px;
-    border: 200x;
+    position: relative;
+    left: 600px;
+    top: 100px;
+    font-family: 'Brush Script MT';
+    font-size: 25px;
 }

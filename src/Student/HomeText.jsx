@@ -19,14 +19,13 @@ const HomeText = ( props ) => (
       size="large" 
       onClick={()=>props.pageSelectorHandle(1)}> Status 
     </Button> <br />
-    <Button style={{
-      backgroundColor: "#21b6ae",
-      color: "white"}} variant="contained" size="large"
-    onClick={()=>props.pageSelectorHandle(2)}> Managementul proiectelor </Button> <br />
-    <Button style={{
-      backgroundColor: "#21b6ae",
-      color: "white"}}variant="contained" size="large" color="secondary"
-    onClick={()=>props.pageSelectorHandle(3)}> Statistica prezenta </Button>
+    <Button className='distance' style={{
+        backgroundColor: "#21b6ae",
+        color: "white",
+      }} 
+      variant="contained" 
+      size="large"
+      onClick={()=>props.pageSelectorHandle(2)}> Materii </Button> <br />
     </ Box>
   </Router>
   <header>

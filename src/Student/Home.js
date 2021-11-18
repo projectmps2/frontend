@@ -9,6 +9,7 @@ class Home extends Component {
         this.state = {
             pageSelector: 0
         };
+        this.handle = this.handle.bind(this);
     }
 
     // handle = (index) => {
@@ -21,12 +22,14 @@ class Home extends Component {
 
     render() {
         if (this.state.pageSelector === 1) {
-            return(<Status />);
+            return(<Status onHandle={this.handle}/>);
         } else if (this.state.pageSelector === 2) {
-            return(<Lecture />);
+            console.log(this.state.pageSelector);
+            return(<Lecture onHandle={this.handle}/>);
         }
         // passing vars to jsx
-        return(<HomeText pageSelectorHandle={this.handle.bind(this)}/>);
+        // return(<HomeText pageSelectorHandle={this.handle.bind(this)}/>);
+        return(<HomeText pageSelectorHandle={this.handle}/>);
             
     }
 }
