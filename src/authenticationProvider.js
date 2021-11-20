@@ -31,7 +31,7 @@ export class AuthProvider {
         return this.token;
     }
 
-    async requestAuth() {
+    async requestAuth(callback) {
         return this.IsLoggedIn().then(v => {
             console.log(v);
             if (v === false) {
@@ -41,6 +41,9 @@ export class AuthProvider {
                         const token = credential.accessToken;
                         const user = result.user;
                         this.token = user.accessToken;
+                        console.log("Access token")
+                        console.log(this.token)
+                        callback();
                     })
                 } catch (e) {
 

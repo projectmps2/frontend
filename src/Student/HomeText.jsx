@@ -29,20 +29,14 @@ const HomeText = ( props ) => (
       variant="contained" 
       size="large"
       onClick={()=>props.pageSelectorHandle(2)}> Materii </Button> <br />
+      
       <Button className='distance' style={{
         backgroundColor: "#21b6ae",
         color: "white",
       }} 
       variant="contained" 
       size="large"
-      onClick={()=> new AuthProvider().requestAuth() }> Login </Button>
-      <Button className='distance' style={{
-        backgroundColor: "#21b6ae",
-        color: "white",
-      }} 
-      variant="contained" 
-      size="large"
-      onClick={()=> new AuthProvider().logout() }> Logout </Button>
+      onClick={()=> props.logoutCallback() }> Logout </Button>
     
     </ Box>
   </Router>
