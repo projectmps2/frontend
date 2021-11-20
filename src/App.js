@@ -2,6 +2,9 @@ import './App.css';
 import React, {Component} from 'react';
 import AppText from './AppText';
 
+import { AuthProvider } from './authenticationProvider'
+ 
+
 class App extends Component {
 
   constructor() {
