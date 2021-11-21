@@ -1,5 +1,5 @@
 import './App.css';
-import React, {Component} from 'react';
+import React, {Component, useEffect} from 'react';
 import AppText from './AppText';
 
 class App extends Component {
@@ -13,12 +13,14 @@ class App extends Component {
   onButtonClickedStatus() {
     this.status=true;
     console.log(this.status);
-  };
+  }
 
   render() {
     if (this.homeStudent === true) {
       return (
+        <>
         <AppText />
+        </>
        );
     }
   }

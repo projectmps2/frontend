@@ -3,6 +3,7 @@ import HomeProfessorText from './HomeProfessorText'
 import Configuration from './Configuration';
 import Schedule from './Schedule';
 import StatisticsStudent from './StatisticsStudent';
+import QRgen from '../Scan/QRgen';
 
 class HomeProfessor extends Component {
 
@@ -24,6 +25,8 @@ class HomeProfessor extends Component {
             return(< Schedule />);
         } else if (this.state.menuSelector === 13) {
             return(<StatisticsStudent />);
+        } else if (this.state.menuSelector === 14) {
+            return(<QRgen />);
         }
         return(
             <>
