@@ -18,7 +18,7 @@ class Status extends Component {
 
     // fetch data from API
     async componentDidMount() {
-        const url = "http://192.168.100.7:5000/userName/status";
+        const url = "http://localhost:8000/students/{email}/";
         const response = await fetch(url);
         console.log(response)
         const data = await response.json();
@@ -52,9 +52,6 @@ class Status extends Component {
                     </ div>
                )}
             </ div>
-        // <div>
-        //     {this.state.loading || !this.state.person ? ( <div>loading...</div>) : ( <StatusDesign dataPerson={this.state.person}/>)}
-        // </div>
         );
     }
 }

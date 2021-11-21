@@ -14,14 +14,16 @@ class Lecture extends Component {
     }
 
     async componentDidMount() {
-        const url = "http://192.168.100.7:5000/lecture";
+        const url = "http://localhost:8000/courses";
         const response = await fetch(url);
         const data = await response.json();
         this.setState({ configuration: data, loading: false });
-    }
+        console.log(this.state)
+    } 
 
     pageCourse(i) {
         this.setState({ page: i });
+
     }
 
     goBack() {
@@ -29,6 +31,11 @@ class Lecture extends Component {
     }
 
     render() {
+       var data = [<Button> Not loaded</Button>]
+       console.log(this.state.configuration)
+       if(this.state.configuration !== null) {
+        data = this.state.configuration.map(c => <Button style={{backgroundColor: '#21b6ae', color: "white"}} variant="contained" size="large" color="secondary" > {c.name}</Button>) 
+        } 
         return (
             < >
                 <div>
@@ -41,9 +48,9 @@ class Lecture extends Component {
                         onClick={this.goBack.bind(this)}
                     />
                 </ div>
-                <div>
-                </div>
-                <LectureText pageSel={this.pageCourse.bind(this)} />
+                <div className='form-center'>
+                    {data}
+                </ div>
             </>
         );
     }
