@@ -1,6 +1,7 @@
 import { TextField } from '@material-ui/core';
 import React, {Component} from 'react';
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import './Configuration.css';
 
 
@@ -51,10 +52,25 @@ class Configuration extends Component {
     updateBonus(event) {
         this.setState({bonus: event.target.value});
     }
+
+    goBack() {
+        this.props.onHandle(10)
+    }
     
 
     render() {
         return (
+            <>
+            <div>
+            <Button variant="contained" 
+                style = {{
+                    backgroundColor: "#21b6ae",
+                    color: "white",
+                }}
+                startIcon={<ArrowBackIcon />} 
+                onClick={this.goBack.bind(this)}
+            />
+            </ div>
             <form onSubmit={this.handleSubmit} autoComplete='off' className='form-center'>
             <TextField id="standard-basic" label="Informații despre materie" variant="outlined" value={this.state.details} onChange={this.updateDetails.bind(this)}/>
             <br />
@@ -67,6 +83,7 @@ class Configuration extends Component {
             <br />
             <Button style = {{backgroundColor: '#21b6ae', color: 'white'}} variant='contained' color='primary' type="button" onClick={() => this.postData()}> Incarca modificarile </ Button>
             </ form>
+            </>
         );
     }
 }

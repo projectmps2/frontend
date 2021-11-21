@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './Status.css'
-import Tooltip from '@mui/material/Tooltip';
-import StatusDesign from './StatusDesign';
+import Button from '@material-ui/core/Button';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 
 class Status extends Component {
@@ -25,11 +25,23 @@ class Status extends Component {
         this.setState({person: data, loading: false});
     }
 
+    goBack() {
+        this.props.onHandle(0)
+    }
+
     render() {
         return (
            <div>
+               <Button variant="contained" 
+                    style = {{
+                        backgroundColor: "#21b6ae",
+                        color: "white",
+                    }}
+                    startIcon={<ArrowBackIcon />} 
+                    onClick={this.goBack.bind(this)}
+                />
                {this.state.loading || !this.state.person ? (
-                    <div>loading...</div>
+                    <div className='box-center'>Loading...</div>
                )  : (
                     <div className='box-center'>
                         {/* <div>Prenume: {this.state.person.n}</div>

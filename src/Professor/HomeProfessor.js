@@ -20,9 +20,9 @@ class HomeProfessor extends Component {
 
     render() {
         if (this.state.menuSelector === 11) {
-            return(< Configuration />);
+            return(< Configuration onHandle={this.changePath.bind(this)}/>);
         } else if (this.state.menuSelector === 12) {
-            return(< Schedule />);
+            return(< Schedule onHandle={this.changePath.bind(this)}/>);
         } else if (this.state.menuSelector === 13) {
             return(<StatisticsStudent />);
         } else if (this.state.menuSelector === 14) {

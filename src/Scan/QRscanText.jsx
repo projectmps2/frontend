@@ -15,6 +15,11 @@ import { Component } from "react";
       return (
         <>
         <Router>
+        {this.props.confirmed ?  <Box paddingLeft='45%' textAlign='center' sx={{maxWidth: 300, minWidth: 120}} >
+        <div>
+          Attenndance confirmed!
+        </div> 
+        </Box> :
         <Box paddingLeft='45%' textAlign='center' sx={{maxWidth: 300, minWidth: 120}} >
             <Button
                 style={{
@@ -40,6 +45,7 @@ import { Component } from "react";
             </Select>
           </FormControl>
           </ Box>
+        }
         </Router>
         </>
         )}
