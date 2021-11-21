@@ -25,10 +25,15 @@ export class AuthProvider {
         this.gauthp.addScope('https://www.googleapis.com/auth/userinfo.email')
         this.auth = getAuth();
         this.token = null;
+        this.email = "";
     }
 
     getToken() {
         return this.token;
+    }
+
+    getEmail() {
+      return this.email;
     }
 
     async requestAuth(callback) {
@@ -41,8 +46,10 @@ export class AuthProvider {
                         const token = credential.accessToken;
                         const user = result.user;
                         this.token = user.accessToken;
+                        this.email = user.email;
                         console.log("Access token")
                         console.log(this.token)
+                        console.log(user.email)
                         callback();
                     })
                 } catch (e) {

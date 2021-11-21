@@ -29,7 +29,7 @@ const HomeText = ( props ) => (
       variant="contained" 
       size="large"
       onClick={()=>props.pageSelectorHandle(2)}> Materii </Button> <br />
-      
+      <br />
       <Button className='distance' style={{
         backgroundColor: "#21b6ae",
         color: "white",

@@ -8,7 +8,7 @@ import {
   const MeniuProfessorText = ( props ) => ( 
     <>
     <Router>
-    <Box className='center-menu'>
+    <Box className='center-menu' textAlign='center' position='relative' top='200px'>
       <Button
         style={{
           backgroundColor: "#21b6ae", 
@@ -16,28 +16,34 @@ import {
           variant="contained"
           size="large" 
         onClick={()=>props.changePage(11)}> Configurare materie 
-      </Button> <br />
-      <Button style={{
+      </Button> <br/>
+      <Button className='distance' style={{
         backgroundColor: "#21b6ae",
         color: "white"}}
         variant="contained" size="large"
       onClick={()=>props.changePage(12)}> Setare orar </Button> <br />
-      <Button style={{
+      <Button className='distance' style={{
         backgroundColor: "#21b6ae",
         color: "white"}}
       variant="contained" size="large" color="secondary"
       onClick={()=>props.changePage(13)}> Generare statistica </Button> <br />
-      <Button style={{
+      <Button className='distance' style={{
         backgroundColor: "#21b6ae",
         color: "white"}}
        variant="contained" size="large" color="secondary"
-      onClick={()=>props.changePage(14)}> Generare cod QR</Button>
-      <br />
-      <Button style={{
+      onClick={()=>props.changePage(14)}> Generare cod QR</Button> <br />
+      <Button className='distance' style={{
         backgroundColor: "#21b6ae",
         color: "white"}}
        variant="contained" size="large" color="secondary"
-      onClick={()=>props.changePage(15)}> Export prezenta</Button>
+      onClick={()=>props.changePage(15)}> Export prezenta</Button> <br />
+       <Button className='distance' style={{
+          backgroundColor: "#21b6ae",
+          color: "white",
+        }} 
+        variant="contained" 
+        size="large"
+        onClick={()=> props.logoutCallback() }> Logout </Button>
       </ Box>
     </Router>
     <header>

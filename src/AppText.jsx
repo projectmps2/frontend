@@ -40,7 +40,9 @@ class AppText extends Component {
         <Router>
           <Switch>
             <Route path={'/' + this.state.timeHash.toString()}><QRscan /></Route>
-            <Route exact path="/"><HomeProfessor /></ Route>
+            <Route exact path="/"><HomeProfessor logoutCallback={() => {
+                this.props.logoutCallback();
+            }}/></ Route>
           </Switch>
         </ Router>
         {/* renuntam momentan la route */}
