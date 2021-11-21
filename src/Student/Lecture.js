@@ -19,11 +19,10 @@ class Lecture extends Component {
         const data = await response.json();
         this.setState({ configuration: data, loading: false });
         console.log(this.state)
-    } 
+    }
 
-    pageCourse(i) {
-        this.setState({ page: i });
-
+    pageCourse(event) {
+        this.setState({ page: event.target.value });
     }
 
     goBack() {
@@ -31,11 +30,22 @@ class Lecture extends Component {
     }
 
     render() {
-       var data = [<Button> Not loaded</Button>]
-       console.log(this.state.configuration)
-       if(this.state.configuration !== null) {
-        data = this.state.configuration.map(c => <Button style={{backgroundColor: '#21b6ae', color: "white"}} variant="contained" size="large" color="secondary" > {c.name}</Button>) 
-        } 
+        if(this.state.page !== 0) {
+            console.log(this.state.page)
+            return <LectureText onCourse={this.pageCourse}/>;
+        }
+        var data = [<Button> Not loaded</Button>]
+        console.log(this.state.configuration)
+        if (this.state.configuration !== null) {
+            data = this.state.configuration.map(c =>
+                <div>
+                    <Button value={c.name} style={{ backgroundColor: '#21b6ae', color: "white" }}
+                        variant="contained" size="large" color="secondary" onClick={this.pageCourse.bind(this)}> {c.name}
+                    </Button>
+                    <br />
+                </ div>
+            )
+        }
         return (
             < >
                 <div>

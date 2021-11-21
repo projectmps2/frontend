@@ -1,35 +1,27 @@
-import {
-    BrowserRouter as Router,
-  } from "react-router-dom";
-  import { Button } from "@material-ui/core";
-  import { Box } from "@material-ui/core";
-  import "./Home.css"
-import Configuration from "../Professor/Configuration";
+import "./Home.css"
+import React, {Component} from 'react'
+import { Filter } from "@material-ui/icons";
   
-  
-  const LectureText = ( props ) => (
-    // props.courses.map(c =>
-    //   <Button style={{backgroundColor: '#21b6ae', color: "white"}} variant="contained" size="large" color="secondary" > {c.names} </Button>)
-    // <>
-    // <Router>
-    // <Box textAlign='center' position='relative' top='300px'>
-    //   <Button
-    //     style={{
-    //         backgroundColor: "#21b6ae",
-    //         color: "white"}}
-    //        variant="contained" size="large" color="secondary"
-    //     onClick={()=>props.pageSel(21)}> asss
-    //   </Button> <br />
-    //   <Button className='distance' style={{
-    //     backgroundColor: "#21b6ae",
-    //     color: "white"}}
-    //    variant="contained" size="large" color="secondary"
-    //     onClick={()=>props.pageSel(22)}> Materia 2 </Button> <br />
-    //   </ Box>
-    // </Router>
-    // </>
-    // console.log(props.courses)
-    <div />
-  );
+  class LectureText extends Component {
+    constructor(props) {
+      super(props)
+      this.state = {
+        body: null,
+      }
+    }
+
+    async componentDidMount() {
+      const url = "http://localhost:8000/courses";
+      const response = await fetch(url);
+      const data = await response.json();
+      const res = data.filter(obj => obj.name == this.props.v)
+      this.setState({body: res})
+    }
+
+    render() {
+      return(<div />);
+    }
+
+  }
   
   export default LectureText;

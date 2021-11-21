@@ -22,7 +22,7 @@ class Home extends Component {
   // }
 
   handle(index) {
-    this.setState({ pageSelector: index, loggedIn: this.getState().loggedIn });
+    this.setState({ pageSelector: index, loggedIn: this.state.loggedIn });
   }
 
   login() {
