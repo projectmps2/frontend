@@ -20,7 +20,6 @@ class Status extends Component {
     async componentDidMount() {
         const url = "http://localhost:8000/students/{email}/";
         const response = await fetch(url);
-        console.log(response)
         const data = await response.json();
         this.setState({person: data, loading: false});
     }

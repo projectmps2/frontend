@@ -15,7 +15,6 @@ export default function ControlledTooltips(props) {
     setOpen(true);
   };
 
-  console.log(props.dataPerson);
 
     return (
             <Tooltip open={open} onClose={handleClose} onOpen={handleOpen} title='Username'> {props.dataPerson.userName} </Tooltip>

@@ -10,6 +10,7 @@ class Lecture extends Component {
             loading: true,
             configuration: null,
             page: 0,
+            n: null,
         };
     }
 
@@ -18,11 +19,10 @@ class Lecture extends Component {
         const response = await fetch(url);
         const data = await response.json();
         this.setState({ configuration: data, loading: false });
-        console.log(this.state)
     }
 
-    pageCourse(event) {
-        this.setState({ page: event.target.value });
+    async pageCourse(course, i) {
+        this.setState({ page: i, n: course });
     }
 
     goBack() {
@@ -30,17 +30,15 @@ class Lecture extends Component {
     }
 
     render() {
-        if(this.state.page !== 0) {
-            console.log(this.state.page)
-            return <LectureText onCourse={this.pageCourse}/>;
+        if(this.state.page !== 0 && this.state.n != null) {
+            return <LectureText courseName={this.state.n}/>;
         }
         var data = [<Button> Not loaded</Button>]
-        console.log(this.state.configuration)
         if (this.state.configuration !== null) {
             data = this.state.configuration.map(c =>
                 <div>
                     <Button value={c.name} style={{ backgroundColor: '#21b6ae', color: "white" }}
-                        variant="contained" size="large" color="secondary" onClick={this.pageCourse.bind(this)}> {c.name}
+                        variant="contained" size="large" color="secondary" onClick={()=>this.pageCourse(c.name, 1)}> {c.name}
                     </Button>
                     <br />
                 </ div>
