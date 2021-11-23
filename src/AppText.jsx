@@ -7,14 +7,39 @@ import {
   Route,
   Switch
 } from "react-router-dom";
+import { AuthProvider } from './authenticationProvider';
 
 class AppText extends Component {
   constructor() {
     super();
     this.interval = 0;
     this.state = {
-      timeHash: Math.floor(Date.now() / 1000 / 60)
+      timeHash: Math.floor(Date.now() / 1000 / 60),
+      role: "student"
     };
+  }
+
+  escapeRegExp(string) {
+    return string.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  replaceAll(str, find, replace) {
+    return str.replace(new RegExp(this.escapeRegExp(find), 'g'), replace);
+  }
+
+  getUserRole = async (email) => {
+    const url = "http://127.0.0.1:8000/users/" + email;
+    const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+    });
+
+    const data = await response.json();
+    console.log("User: " + data);
+
+    return data.role;
   }
 
   regenerateHash() {
@@ -23,7 +48,13 @@ class AppText extends Component {
     }));
   }
   
-  componentDidMount() {
+  async componentDidMount() {
+    const role = await this.getUserRole(
+      this.replaceAll(encodeURIComponent(new AuthProvider().getEmail()), ".", "%dot%")
+    );
+    this.setState(() => ({
+      role: role
+    }));
     this.interval = setInterval(() => this.regenerateHash(), 15000);
     console.log(this.state.timeHash)
   }
@@ -36,18 +67,21 @@ class AppText extends Component {
   render() {
     return ( 
       <>
-        <div>{this.state.timeHash}</div>
         <Router>
           <Switch>
             <Route path={'/' + this.state.timeHash.toString()}><QRscan /></Route>
-            <Route exact path="/"><HomeProfessor logoutCallback={() => {
-                this.props.logoutCallback();
-            }}/></ Route>
+            <Route exact path="/">
+              {this.state.role === "student" ?
+                <Home logoutCallback={() => {
+                  this.props.logoutCallback();
+                }}/> :
+                <HomeProfessor logoutCallback={() => {
+                  this.props.logoutCallback();
+                }}/>
+              }
+            </ Route>
           </Switch>
         </ Router>
-        {/* renuntam momentan la route */}
-        {/* <Home /> */}
-        {/* < HomeProfessor /> */}
       </>
     )
   }
