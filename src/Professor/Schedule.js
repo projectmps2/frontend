@@ -41,7 +41,7 @@ class Schedule extends Component {
                     'Content-type': 'application/json', 
                 },
                 body: JSON.stringify({
-                   description: this.state.day  + "-" + this.state.hourStart + "-" + this.state.hourFinish 
+                   date: this.state.day  + "-" + this.state.hourStart + "-" + this.state.hourFinish 
                 })
             });
 
