@@ -13,8 +13,8 @@ const AppText = () => (
       </ div>
     </ Router> */}
     {/* renuntam momentan la route */}
-    <Home />
-    {/* < HomeProfessor /> */}
+    {/* <Home /> */}
+    < HomeProfessor />
   </>
 );
 

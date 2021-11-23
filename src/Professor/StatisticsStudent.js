@@ -1,58 +1,84 @@
-import { TableBody, TableRow } from '@mui/material';
+import Chart from "react-google-charts";
 import React, {Component} from 'react';
-import Table from '@mui/material/Table';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import Paper from '@mui/material/Paper';
+import Button from '@material-ui/core/Button';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
-const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-  ];
+const dummy_data = [
+    {
+        date: "20-11-2021",
+        attendance: [123, 110, 93]
+    },
+    {
+        date: "27-11-2021",
+        attendance: [120, 118] 
+    }
+];
 
-function createData(last_name, first_name, userName, firstQRCode, secondQRCode, lastQRCode) {
-    return {last_name, first_name, userName, firstQRCode, secondQRCode, lastQRCode};
-}
+const attendance_for_chart = [];
 
 class StatisticsStudent extends Component {
-    constructor() {
-        super();
+    goBack() {
+        this.props.onHandle(10)
     }
 
     render() {
+        for (let i = 0; i < dummy_data.length; i++) {
+            attendance_for_chart[i] = [
+                ['Studenti', 'Numar studenti'],
+            ];
+
+            for (let j = 0; j < dummy_data[i].attendance.length; j++) {
+                attendance_for_chart[i][j + 1] = ["Q" + String(j + 1), dummy_data[i].attendance[j]];
+            }
+            
+        }
+
         return(
             <>
-            <TableContainer component={Paper}>
-                <Table sx={{minWidth: 650}} aria-label='simple table'>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Nume</TableCell>
-                            <TableCell align="right">Prenume</TableCell>
-                            <TableCell align="right">user</TableCell>
-                            <TableCell align="right">Prezenta inceput</TableCell>
-                            <TableCell align="right">Prezenta mijloc</TableCell>
-                            <TableCell align="right">Prezenta sfarsit</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody> 
-                        {rows.map((row) => (
-                            <TableRow
-                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                            <TableCell component="th" scope="row">{row.last_name}</TableCell>
-                            <TableCell align="right">{row.first_name}</TableCell>
-                            <TableCell align="right">{row.userName}</TableCell>
-                            <TableCell align="right">{row.firstQRCode}</TableCell>
-                            <TableCell align="right">{row.secondQRCode}</TableCell>
-                            <TableCell align="right">{row.lastQRCode}</TableCell>
-                          </TableRow>
-                        ))}
-                    </ TableBody>
-                </ Table>
-            </ TableContainer>    
+            <div>
+            <Button variant="contained" 
+                style = {{
+                    backgroundColor: "#21b6ae",
+                    color: "white",
+                }}
+                startIcon={<ArrowBackIcon />} 
+                onClick={this.goBack.bind(this)}
+            />
+            </ div>
+            <div style={{ display: 'flex', maxWidth: 900 }}>
+            <Chart
+                width={400}
+                height={300}
+                chartType="ColumnChart"
+                loader={<div>Loading Chart</div>}
+                data = {attendance_for_chart[0]}
+                options={{
+                title: dummy_data[0].date,
+                chartArea: { width: '50%' },
+                hAxis: {
+                    title: '',
+                    minValue: 0,
+                },
+                vAxis: {
+                    title: 'Studenti',
+                },
+                }}
+                legendToggle
+            />
+            <Chart
+                width={400}
+                height={'300px'}
+                chartType="AreaChart"
+                loader={<div>Loading Chart</div>}
+                data = {attendance_for_chart[1]}
+                options={{
+                title: dummy_data[1].date,
+                hAxis: { title: '', titleTextStyle: { color: '#333' } },
+                vAxis: { minValue: 0 },
+                chartArea: { width: '50%', height: '70%' },
+                }}
+            />
+            </div>
             </>
         );
     }
