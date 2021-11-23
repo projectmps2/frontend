@@ -2,6 +2,8 @@ import "./Home.css"
 import React, {Component} from 'react'
 import Button from '@material-ui/core/Button';
 import "./Lecture.css"
+import Lecture from './Lecture'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
   
   class LectureText extends Component {
     constructor(props) {
@@ -22,17 +24,33 @@ import "./Lecture.css"
       }
     }
 
+    comeBack() {
+      this.props.comeBack();
+    }
+
     render() {
       if(this.state.body != null) {
-        return (<div className='form-center'>
-          Descriere materie: {this.state.body.description}
-          <br />
-          Profesoer: {this.state.body.owner.user.name}
-          <br />
-          Mail: {this.state.body.owner.user.email}
-          </div>); 
+        return (
+        <div>
+          <div className='form-center'>
+            Descriere materie: {this.state.body.description}
+            <br />
+            Profesor: {this.state.body.owner.user.name}
+            <br />
+            Mail: {this.state.body.owner.user.email}
+          </div>
+          <Button variant="contained"
+            style={{
+              backgroundColor: "#21b6ae",
+              color: "white",
+              }}
+            startIcon={<ArrowBackIcon />}
+            onClick={this.comeBack.bind(this)}
+          />
+        </div>);
+
       }
-      return <Button> Not loaded</Button>
+      return <div><Button> Not loaded</Button></div>
 
     }
 
