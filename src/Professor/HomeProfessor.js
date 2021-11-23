@@ -26,11 +26,12 @@ class HomeProfessor extends Component {
         } else if (this.state.menuSelector === 13) {
             return(<StatisticsStudent />);
         } else if (this.state.menuSelector === 14) {
-            return(<QRgen />);
+            return(<QRgen onHandle={this.changePath.bind(this)}/>);
         }
         return(
             <>
-                <HomeProfessorText changePage={this.changePath.bind(this)}/>
+                <HomeProfessorText logoutCallback={() => {this.props.logoutCallback()}}
+                changePage={this.changePath.bind(this)}/>
             </>
         );
     }

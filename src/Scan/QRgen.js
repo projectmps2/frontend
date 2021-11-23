@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import QRCode from 'qrcode';
-import { Box } from "@material-ui/core";
+import { Box, Button } from "@material-ui/core";
 import { CircularProgress } from '@mui/material';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 class QRgen extends Component {
 
@@ -37,9 +38,21 @@ class QRgen extends Component {
         clearInterval(this.interval);
     }
 
+    goBack() {
+        this.props.onHandle(10)
+    }
+
     render() {
         return(
             <>
+            <div><Button variant="contained" 
+              style = {{
+                  backgroundColor: "#21b6ae",
+                  color: "white",
+              }}
+              startIcon={<ArrowBackIcon />} 
+              onClick={this.goBack.bind(this)}
+            /> </div>
             <Box textAlign='center'>
                 <img style={{
                     marginTop:'10%',
@@ -49,7 +62,7 @@ class QRgen extends Component {
                 <CircularProgress style={{
                         position: 'fixed',
                         left: '48%',
-                        top: '75%'
+                        top: '78%'
                     }}
                     size='65px'
                     variant="determinate" 

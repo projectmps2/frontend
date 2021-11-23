@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import QRscanText from './QRscanText';
+import AuthProvider from '../authenticationProvider';
 
 class QRscan extends Component {
     constructor() {
@@ -20,18 +21,40 @@ class QRscan extends Component {
         }))
     };
 
-    createAttendance = async (id, course, date) =>{
+    getUserByEmail = async (email) => {
+        const url = "http://127.0.0.1:8000/students/" + email;
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+        });
+    
+        const data = await response.json( );
+        console.log("User: " + data);
+
+        return data;
+    }
+
+    escapeRegExp(string) {
+        return string.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&');
+    }
+
+    replaceAll(str, find, replace) {
+        return str.replace(new RegExp(this.escapeRegExp(find), 'g'), replace);
+    }
+
+    createAttendance = async (course, date) =>{
+        const obj = await this.getUserByEmail(this.replaceAll(encodeURIComponent(new AuthProvider().getEmail()), ".", "%dot%"));
         const url = "http://127.0.0.1:8000/attendance";
         const response = await fetch(url, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({student_id: id, name: course, date})
+            body: JSON.stringify({student_id: obj.user.id, name: course, date})
         });
-
-        console.log("Post with json: " + JSON.stringify({student_id: id, name: course, date}));
-     
+        console.log(obj);
         const data = await response.json( );
     
         console.log(data);
@@ -39,7 +62,7 @@ class QRscan extends Component {
 
     handleConfirm = (event) => {
         if (this.state.course !== 'default') {
-            this.createAttendance(3, this.state.course, new Date().toLocaleString());
+            this.createAttendance(this.state.course, new Date().toLocaleString());
             this.setState(() => ({
                 confirmed: true
             }));
