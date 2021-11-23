@@ -22,7 +22,6 @@ class Home extends Component {
       if (this.state.pageSelector === 1) {
         return <Status onHandle={this.handle} />;
       } else if (this.state.pageSelector === 2) {
-        console.log(this.state.pageSelector);
         return <Lecture onHandle={this.handle} />;
       }
       // passing vars to jsx

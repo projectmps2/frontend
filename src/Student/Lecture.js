@@ -9,8 +9,10 @@ class Lecture extends Component {
         this.state = {
             loading: true,
             configuration: null,
-            page: 0,
+            page: -1,
+            n: null,
         };
+        this.goBack = this.goBack.bind(this)
     }
 
     async componentDidMount() {
@@ -18,24 +20,39 @@ class Lecture extends Component {
         const response = await fetch(url);
         const data = await response.json();
         this.setState({ configuration: data, loading: false });
-        console.log(this.state)
-    } 
+    }
 
-    pageCourse(i) {
-        this.setState({ page: i });
-
+    async pageCourse(course, i) {
+        this.setState({ page: i, n: course });
+        // console.log(this.state.page)
     }
 
     goBack() {
         this.props.onHandle(0)
     }
 
+    coursesPage() {
+        this.props.onHandle(2)
+        this.setState({page: -1})
+    }
+
     render() {
-       var data = [<Button> Not loaded</Button>]
-       console.log(this.state.configuration)
-       if(this.state.configuration !== null) {
-        data = this.state.configuration.map(c => <Button style={{backgroundColor: '#21b6ae', color: "white"}} variant="contained" size="large" color="secondary" > {c.name}</Button>) 
-        } 
+        if(this.state.page > 0 && this.state.n != null) {
+            console.log(this.state.page)
+            return <LectureText courseName={this.state.n} comeBack={this.coursesPage.bind(this)}/>;
+        }
+        var data = [<Button> Not loaded</Button>]
+        if (this.state.configuration !== null) {
+            data = this.state.configuration.map(c =>
+                <div>
+                    <Button value={c.name} style={{ backgroundColor: '#21b6ae', color: "white" }}
+                        variant="contained" size="large" color="secondary" onClick={()=>this.pageCourse(c.name, 20)}> {c.name}
+                    </Button>
+                    <br />
+                    <br />
+                </ div>
+            )
+        }
         return (
             < >
                 <div>
@@ -45,7 +62,7 @@ class Lecture extends Component {
                             color: "white",
                         }}
                         startIcon={<ArrowBackIcon />}
-                        onClick={this.goBack.bind(this)}
+                        onClick={this.goBack}
                     />
                 </ div>
                 <div className='form-center'>
