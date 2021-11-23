@@ -20,7 +20,7 @@ const HomeText = ( props ) => (
       }} 
       variant="contained" 
       size="large" 
-      onClick={()=>props.pageSelectorHandle(1)}> Status 
+      onClick={()=>props.pageSelectorHandle(1)}> Profil 
     </Button> <br />
     <Button className='distance' style={{
         backgroundColor: "#21b6ae",

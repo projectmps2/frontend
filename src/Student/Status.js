@@ -64,7 +64,7 @@ class Status extends Component {
                     <div className='box-center'>Loading...</div>
                )  : (
                     <div >
-                        <div className='center'>Username: {this.state.person.name}</ div>
+                        <div className='center'>Nume: {this.state.person.name}</ div>
                         <div className='center'>Grupa: {this.state.grupa} </div>
                         <div className='center'>mail: {this.state.person.email} </div>
                     </ div>

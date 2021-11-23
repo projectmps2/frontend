@@ -38,6 +38,8 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
             Profesor: {this.state.body.owner.user.name}
             <br />
             Mail: {this.state.body.owner.user.email}
+            <br />
+            Orar: {this.state.body.date}
           </div>
           <Button variant="contained"
             style={{
