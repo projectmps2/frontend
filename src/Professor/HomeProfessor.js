@@ -18,6 +18,11 @@ class HomeProfessor extends Component {
         this.setState({menuSelector: index});
     }
 
+    async exportCSV() {
+        const url = "http://127.0.0.1:8000/download_csv/"
+        window.open(url, "_blank")
+    }
+
     render() {
         if (this.state.menuSelector === 11) {
             return(< Configuration onHandle={this.changePath.bind(this)}/>);
@@ -31,7 +36,9 @@ class HomeProfessor extends Component {
         return(
             <>
                 <HomeProfessorText logoutCallback={() => {this.props.logoutCallback()}}
-                changePage={this.changePath.bind(this)}/>
+                changePage={this.changePath.bind(this)}
+                exportCSV={this.exportCSV.bind(this)}
+                />
             </>
         );
     }

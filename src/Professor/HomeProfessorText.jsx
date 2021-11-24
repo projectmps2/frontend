@@ -36,7 +36,7 @@ import {
         backgroundColor: "#21b6ae",
         color: "white"}}
        variant="contained" size="large" color="secondary"
-      onClick={()=>props.changePage(15)}> Export prezenta</Button> <br />
+      onClick={props.exportCSV}> Export prezenta</Button> <br />
        <Button className='distance' style={{
           backgroundColor: "#21b6ae",
           color: "white",
