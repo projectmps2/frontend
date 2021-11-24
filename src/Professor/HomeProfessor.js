@@ -24,7 +24,7 @@ class HomeProfessor extends Component {
         } else if (this.state.menuSelector === 12) {
             return(< Schedule onHandle={this.changePath.bind(this)}/>);
         } else if (this.state.menuSelector === 13) {
-            return(<StatisticsStudent />);
+            return(<StatisticsStudent onHandle={this.changePath.bind(this)}/>);
         } else if (this.state.menuSelector === 14) {
             return(<QRgen onHandle={this.changePath.bind(this)}/>);
         }

@@ -28,10 +28,6 @@ class StatisticsStudent extends Component {
         };
       }
 
-    goBack() {
-        this.props.onHandle(10)
-    }
-
     getAttendances = async () => {
         const url = "http://127.0.0.1:8000/attendance"
         const response = await fetch(url);
@@ -110,16 +106,6 @@ class StatisticsStudent extends Component {
 
         return(
             <>
-            <div>
-            <Button variant="contained" 
-                style = {{
-                    backgroundColor: "#21b6ae",
-                    color: "white",
-                }}
-                startIcon={<ArrowBackIcon />} 
-                onClick={this.goBack.bind(this)}
-            />
-            </ div>
             {this.state.data.length > 0 ?
             <div style={{ display: 'flex', maxWidth: 900 }}>
             <Chart

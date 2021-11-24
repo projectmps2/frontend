@@ -1,9 +1,10 @@
 import "./Home.css"
 import React, {Component} from 'react'
-import Button from '@material-ui/core/Button';
+import {Button, Box} from '@material-ui/core/';
 import "./Lecture.css"
 import Lecture from './Lecture'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import StatisticsStudent from "./StatisticsStudent";
   
   class LectureText extends Component {
     constructor(props) {
@@ -32,15 +33,6 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
       if(this.state.body != null) {
         return (
         <div>
-          <div className='form-center'>
-            Descriere materie: {this.state.body.description}
-            <br />
-            Profesor: {this.state.body.owner.user.name}
-            <br />
-            Mail: {this.state.body.owner.user.email}
-            <br />
-            Orar: {this.state.body.date}
-          </div>
           <Button variant="contained"
             style={{
               backgroundColor: "#21b6ae",
@@ -49,6 +41,17 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
             startIcon={<ArrowBackIcon />}
             onClick={this.comeBack.bind(this)}
           />
+          <Box textAlign='center' position='relative' top='200px'>
+            Descriere materie: {this.state.body.description}
+            <br />
+            Profesor: {this.state.body.owner.user.name}
+            <br />
+            Mail: {this.state.body.owner.user.email}
+            <br />
+            Orar: {this.state.body.date}
+            <br /><br /><br />
+            <StatisticsStudent />
+          </Box>
         </div>);
 
       }
