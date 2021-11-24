@@ -1,5 +1,5 @@
 
-import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from 'firebase/auth';
+import { getAuth, signInWithPopup, signInWithEmailAndPassword, GoogleAuthProvider, signOut } from 'firebase/auth';
 import { initializeApp } from 'firebase/app'
 
 const firebaseConfig = {
@@ -36,22 +36,28 @@ export class AuthProvider {
       return this.email;
     }
 
-    async requestAuth(callback) {
+    async requestAuth(useremail, password, callback) {
         return this.IsLoggedIn().then(v => {
             console.log(v);
             if (v === false) {
                 try {
-                    signInWithPopup(this.auth, this.gauthp).then(result => {
-                        const credential = GoogleAuthProvider.credentialFromResult(result);
-                        const token = credential.accessToken;
-                        const user = result.user;
-                        this.token = user.accessToken;
-                        this.email = user.email;
-                        console.log("Access token")
-                        console.log(this.token)
-                        console.log(user.email)
-                        callback();
-                    })
+                  let signFuture = null;
+                  if (useremail != null && password != null) {
+                    signFuture = signInWithEmailAndPassword(this.auth, useremail, password);
+                  } else {
+                    signFuture = signInWithPopup(this.auth, this.gauthp);
+                  }
+                  signFuture.then(result => {
+                    const credential = GoogleAuthProvider.credentialFromResult(result);
+                    const user = result.user;
+                    this.token = user.accessToken;
+                    this.email = user.email;
+                    console.log("Access token")
+                    console.log(this.token)
+                    console.log(user.email)
+                    callback();
+                  });
+                    
                 } catch (e) {
 
                 }
@@ -88,7 +94,8 @@ export class AuthProvider {
     }
 
     logout() {
-        signOut(this.auth)
+      this.auth.signOut()
+        //signOut(this.auth)
         this.token = null;
     }
 

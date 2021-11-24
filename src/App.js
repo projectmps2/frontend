@@ -1,9 +1,10 @@
 import './App.css';
 import React, {Component, useEffect} from 'react';
 import AppText from './AppText';
-import { Button } from '@material-ui/core';
+import { Button, TextField } from '@material-ui/core';
 
 import { AuthProvider } from './authenticationProvider'
+import { updateEmail } from 'firebase/auth';
  
 
 class App extends Component {
@@ -17,6 +18,8 @@ class App extends Component {
     };
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
+    this.email = null;
+    this.password = null;
   }
 
   handle(index) {
@@ -99,21 +102,35 @@ class App extends Component {
   //   console.log(graphData);
   // }
 
+  updateEmail(event) {
+    this.emal = event.target.value;
+  }
+
+  updatePassword(event) {
+    this.password = event.target.value;
+  }
+
   render() {
     if (this.state.loggedIn) {
       return <AppText logoutCallback={() => {
         this.logout();
       }}/>
     } else {
-      return <Button className='distance' style={{
-        backgroundColor: "#21b6ae",
-        color: "white",
-      }} 
-      variant="contained" 
-      size="large"
-      onClick={()=> new AuthProvider().requestAuth(() => {
-        this.login();
-      }) }> Login </Button>
+      return (
+        <>
+        <Button className='distance' style={{ backgroundColor: "#21b6ae", color: "white", }} variant="contained" size="large"
+          onClick={()=> new AuthProvider().requestAuth(null, null, () => this.login()) }> Login with Google </Button>
+        <br/> <br/>
+        <TextField id="standard-basic" label="Email" variant="outlined" value={this.email} onChange={this.updateEmail.bind(this)}/>
+        <br/> <br/>
+        <TextField id="standard-basic" label="Email" variant="outlined" value={this.password} type="password" onChange={this.updatePassword.bind(this)}/>
+        <br/> <br/>
+        <Button className='distance' style={{ backgroundColor: "#21b6ae", color: "white", }} variant="contained" size="large"
+          onClick={()=> new AuthProvider().requestAuth(this.email, this.password, () => this.login()) }> Login with Email </Button>
+        <br/>
+
+        </>
+      )
     }
     
   }
